@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Web workers</title>
+
+
+</head>
+
+<body>
+
+	<h1>Web workers</h1>
+	<p>Bieżąca wartość:
+		<output id="result"></output>
+	</p>
+	<input type="button" id="start" value="Start" onClick="startWorker()" />
+	<input type="button" id="stop" value="Stop" onClick="stopWorker()" />
+
+
+	<script>
+
+		//UWAGA! Chrome nie pozwala uruchamiać WebWorker w protokole File -> użyj serwera
+
+		w = new Worker("./obliczenia.js");
+		function startWorker() {
+			// Odbieramy zdarzenie (message) ze skryptu obliczenia.js
+			w.onmessage = function (event) {
+				document.getElementById("result").innerHTML = event.data;
+			}
+		}
+
+		function stopWorker() {
+			w.terminate();
+		}
+
+	</script>
+
+</body>
+
+</html>

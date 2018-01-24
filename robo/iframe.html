@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<head>
+<meta charset="utf-8">
+<title>Iframe</title>
+
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<script>
+
+	function showMessage(event){
+		var messageBody;
+		//Sprawdzenie czy wiadomość przyszła z określonego adresu
+		if(event.origin != "http://127.0.0.1"){
+			messageBody = "Brak uprawnień";
+		} else {
+			//przypisanie treści wiadomości do zmiennej
+			messageBody = event.data;
+		}
+		document.getElementById('tresc').innerHTML = messageBody;
+	}
+
+	//Nasłuchiwanie zdarzenia przyjścia wiadomości
+	window.addEventListener("message", showMessage, false);
+
+</script>
+
+</head>
+
+<body>
+
+    <p id="tresc">Zawartość iframe.html</p>
+
+</body>
+</html>
