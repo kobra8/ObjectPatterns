@@ -41,4 +41,36 @@ class Bicycle implements Vehicle
 	}
 }
 
+// Interfejs fabryki
+
+interface VehicleFactory {
+	public function create($name);
+}
+
+// Fabryka samochodów
+
+class CarFactory implements VehicleFactory {
+	public function create($name) {
+		return new Car($name);
+	}
+}
+
+// Fabryka rowerów
+
+class BicycleFactory implements VehicleFactory {
+	public function create($name) {
+		return new Bicycle($name);
+	}
+}
+
+$carFactory = new CarFactory();
+$bikeFactory = new BicycleFactory();
+
+$car = $carFactory->create('Trabant');
+echo $car->getName();
+
+$bike = $bikeFactory-> create('Romet');
+echo "<br>";
+echo $bike->getName();
+
 ?>
